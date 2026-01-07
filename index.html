@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Vision-Language Models as Differentiable Semantic and Spatial Rewards for Text-to-3D Generation">
+        content="Let Language Constrain Geometry:Vision–Language Models as Semantic and Spatial Critics for 3D Generation">
   <meta name="keywords" content="Diffusion Models, Text-to-3D, Vision-Language Model">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>
-    Vision–Language Models as Differentiable Semantic and Spatial Rewards for Text-to-3D Generation
+    Let Language Constrain Geometry:Vision–Language Models as Semantic and Spatial Critics for 3D Generation
   </title>
   <script
     type="module"
@@ -125,14 +125,18 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Vision–Language Models as Differentiable Semantic and Spatial Rewards for Text-to-3D Generation</h1>
+          <h1 class="title is-1 publication-title">Let Language Constrain Geometry:<br>Vision–Language Models as Semantic and Spatial Critics for 3D Generation</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://openreview.net/profile?id=%7EWeimin_Bai1">Weimin Bai</a><sup>1</sup>,</span>
+              <a href="https://scholar.google.com/citations?user=M6bEs8IAAAAJ&hl=en&oi=ao">Weimin Bai</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://ai4imaging.github.io/latentdem/">Yubo Li</a><sup>1</sup>,</span>
+              <a href="https://scholar.google.com/citations?user=moOB0R4AAAAJ&hl=en&oi=ao">Yubo Li</a><sup>1</sup>,</span>
             <span class="author-block">
               <a href="https://pkulwj1994.github.io/">Weijian Luo</a><sup>2</sup>,
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=WUMu1KkAAAAJ&hl=en&oi=ao">Zeqiang Lai</a><sup>3</sup>,
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=7Gqp6FsAAAAJ&hl=en&oi=ao">Yequan Wang</a><sup>4</sup>,
             </span>
             <span class="author-block">
               <a href="https://wenzhengchen.github.io/">Wenzheng Chen</a><sup>1</sup>,
@@ -145,6 +149,8 @@
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>Peking University,</span>
             <span class="author-block"><sup>2</sup>Xiaohongshu Inc</span>
+            <span class="author-block"><sup>3</sup>MMLab, CUHK</span>
+            <span class="author-block"><sup>4</sup>BAAI, Beijing</span>
             <span class="author-block"><sup>✉</sup>Corresponding Author</span>
           </div>
 
@@ -161,7 +167,7 @@
 <!--                </a>-->
 <!--              </span>-->
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2509.15772"
+                <a href="https://arxiv.org/abs/2511.14271"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -222,11 +228,23 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Score Distillation Sampling (SDS) enables high-quality text-to-3D generation by supervising 3D models through the denoising of multi-view 2D renderings, using a pretrained text-to-image diffusion model to align with the input prompt and ensure 3D consistency.
-            However, existing SDS-based methods face two fundamental limitations: (1) their reliance on CLIP-style text encoders leads to coarse semantic alignment and struggles with fine-grained prompts; and (2) 2D diffusion priors lack explicit 3D spatial constraints, resulting in geometric inconsistencies and inaccurate object relationships in multi-object scenes.
-            To address these challenges, we propose VLM3D, a novel text-to-3D generation framework that integrates large vision–language models (VLMs)
-            into the SDS pipeline as differentiable semantic and spatial priors. Unlike standard text-to-image diffusion priors, VLMs leverage rich language-grounded supervision that enables fine-grained prompt alignment. Moreover, their inherent vision language modeling provides strong spatial understanding, which significantly enhances 3D consistency for single-object generation and improves relational reasoning in multi-object scenes. We instantiate VLM3D based on the open-source Qwen2.5-VL model and evaluate it on the GPTeval3D benchmark.
-            Experiments across diverse objects and complex scenes show that VLM3D significantly outperforms prior SDS-based methods in semantic fidelity, geometric coherence, and spatial correctness.
+            Text-to-3D generation has advanced rapidly, yet state-of-theart models, encompassing both optimization-based and feedforward architectures, still face two fundamental limitations.
+            First, they struggle with coarse semantic alignment, often
+            failing to capture fine-grained prompt details. Second, they
+            lack robust 3D spatial understanding, leading to geometric
+            inconsistencies and catastrophic failures in part assembly
+            and spatial relationships. To address these challenges, we
+            propose VLM3D, a general framework that repurposes large
+            vision-language models (VLMs) as powerful, differentiable
+            semantic and spatial critics. Our core contribution is a dualquery critic signal derived from the VLM’s "Yes/No" logodds, which assesses both semantic fidelity and geometric
+            coherence. We demonstrate the generality of this guidance
+            signal across two distinct paradigms: (1) As a reward objective for optimization-based pipelines, VLM3D significantly
+            outperforms existing methods on standard benchmarks. (2)
+            As a test-time guidance module for feed-forward pipelines,
+            it actively steers the iterative sampling process of SOTA native 3D models to correct severe spatial errors. VLM3D
+            establishes a principled and generalizable path to inject
+            the VLM’s rich, language-grounded understanding of both
+            semantics and space into diverse 3D generative pipelines.
           </p>
         </div>
       </div>
@@ -242,7 +260,7 @@
 <!--                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
 <!--        </div>-->
         <div>
-        <span class="center"><img src="./static/images/method-vlm3d.png" style="width:1250px;"></span><br>
+        <span class="center"><img src="./static/images/vlm3d-overview-cvpr-2_01.png" style="width:1250px;"></span><br>
           <!-- <p class="bold-and-large">E-step, draw samples from LDMs: </p>
             <span class="center"><img src="./static/images/img_13.png" style="width:550px;"></span><br>
           <br>
@@ -354,6 +372,7 @@
   </div>
 </section>
 
+
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Animation. -->
@@ -372,20 +391,168 @@
         <h2 class="title is-3">Comparison with Baselines based on MVDiffusion and reward model</h2>
         <div class="content has-text-centered">
           <div style="margin: 20px 0;">
-            <img src="./static/images/vlm3d-figure4.png" style="width: 90%; margin-bottom: 20px;">
+            <img src="./static/images/vlm3d-figure4.jpeg" style="width: 90%; margin-bottom: 20px;">
             <p>VLM3D outperforms these reward-involved methods in semantic fidelity while retaining high perceptual quality.</p>
+          </div>
+        </div>
+
+        <!-- Comparison of VLM3D with feed-forward baselines. -->
+        <h2 class="title is-3">Comparison of VLM3D with feed-forward baselines.</h2>
+        <div class="content has-text-centered">
+          <div style="margin: 20px 0;">
+            <img src="./static/images/vlm3d-figure5.jpeg" style="width: 90%; margin-bottom: 20px;">
+            <p>VLM3D outperforms feed-forward baselines in semantic fidelity while retaining high perceptual quality.</p>
           </div>
         </div>
 
         <h2 class="title is-3">Sensitivity Analysis to Text Perturbations</h2>
         <div class="content has-text-centered">
           <div style="margin: 20px 0;">
-            <img src="./static/images/vlm3d-figure5.png" style="width: 95%; margin-bottom: 20px;">
-            <p>VLM3D accurately adds or removes objects (first row), changes clothing color (second row), and updates spatial relations (third row), demonstrating its better semantic understanding than baselines.</p>
+            <img src="./static/images/vlm3d-figure6.jpeg" style="width: 95%; margin-bottom: 20px;">
+            <p>VLM3D accurately changes clothing color (first row), and updates spatial relations (second row), </p>demonstrating
+              its better semantic understanding than baselines.</p>
+          </div>
+        </div>
+
+        <h2 class="title is-3">Ablation of Geometric Query and Multi-View Input</h2>
+        <div class="content has-text-centered">
+          <div style="margin: 20px 0;">
+            <img src="./static/images/vlm3d-figure7.jpeg" style="width: 95%; margin-bottom: 20px;">
+            <p>We assess the impact of (a) removing the explicit geometry-consistency
+              query from the VLM prompt and (b) using a single view instead of multi-view images. Omitting either component degrades 3D quality—leading to Janus-face artifacts, floating parts, and fractured surfaces. </p>Each row uses a different diffusion backbone: the top employs
+              Stable Diffusion 2-1, while the bottom uses MVDream.</p>
           </div>
         </div>
 
     </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
+        <div class="content has-text-centered">
+          <div style="margin: 20px 0;">
+            <img src="./static/images/addition_1.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
+            <p>Additional results generated by our optimization-based VLM3D.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
+        <div class="content has-text-centered">
+          <div style="margin: 20px 0;">
+            <img src="./static/images/addition_2.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
+            <p>Additional results generated by our optimization-based VLM3D.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
+        <div class="content has-text-centered">
+          <div style="margin: 20px 0;">
+            <img src="./static/images/addition_3.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
+            <p>Additional results generated by our feed-forward-based VLM3D.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
+        <div class="content has-text-centered">
+          <div style="margin: 20px 0;">
+            <img src="./static/images/addition_4.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
+            <p>Additional results generated by our feed-forward-based VLM3D.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
+        <div class="content has-text-centered">
+          <div style="margin: 20px 0;">
+            <img src="./static/images/addition_1.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
+            <p>Additional results generated by our optimization-based VLM3D.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
+        <div class="content has-text-centered">
+          <div style="margin: 20px 0;">
+            <img src="./static/images/addition_2.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
+            <p>Additional results generated by our optimization-based VLM3D.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
+        <div class="content has-text-centered">
+          <div style="margin: 20px 0;">
+            <img src="./static/images/addition_3.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
+            <p>Additional results generated by our feed-forward-based VLM3D.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
+        <div class="content has-text-centered">
+          <div style="margin: 20px 0;">
+            <img src="./static/images/addition_4.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
+            <p>Additional results generated by our feed-forward-based VLM3D.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -530,6 +697,46 @@
           <p class="has-text-justified" style="font-size: 0.9em;">
             <sup>1</sup> Our metrics differ from those reported in the original DreamReward paper because GPT-4V has been deprecated in GPTEval3D, so we instead use GPT-4o-mini.
           </p>
+          <p class="has-text-justified">
+            <strong>Quantitative Results for feed-forward pipelines on 24 prompts.</strong> VLM3D boosts both semantic and geometric quality.
+          </p>
+          <div class="table-container" style="margin: 20px 0;">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>CLIP-D ↓</th>
+                  <th>FID ↓</th>
+                  <th>CLIP-FID ↓</th>
+                  <th>Geo. ↓</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>CLAY</td>
+                  <td>0.22</td>
+                  <td>310.3</td>
+                  <td>53.11</td>
+                  <td>0.63</td>
+                </tr>
+                <tr>
+                  <td>Hunyuan3D</td>
+                  <td>0.23</td>
+                  <td>338.6</td>
+                  <td>54.01</td>
+                  <td>0.58</td>
+                </tr>
+                <tr>
+                  <td><strong>VLM3D (Ours)</strong></td>
+                  <td><strong>0.19</strong></td>
+                  <td><strong>274.9</strong></td>
+                  <td><strong>45.79</strong></td>
+                  <td><strong>0.49</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -542,11 +749,15 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{weimin2025vlm3d,
-  author    = {Weimin, Bai and Yubo, Li and Weijian, Luo and Wenzheng, Chen and He, Sun},
-  title     = {Vision-Language Models as Differentiable Semantic and Spatial Rewards for Text-to-3D Generation},
-  journal   = {arXiv preprint arXiv:2509.15772},
-  year      = {2025},
+    <pre><code>@misc{bai2025letlanguageconstraingeometry,
+      title={Let Language Constrain Geometry: Vision-Language Models as Semantic and Spatial Critics for 3D Generation}, 
+      author={Weimin Bai and Yubo Li and Weijian Luo and Zeqiang Lai and Yequan Wang and Wenzheng Chen and He Sun},
+      year={2025},
+      eprint={2511.14271},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2511.14271}, 
+    }
 }</code></pre>
   </div>
 </section>
