@@ -282,87 +282,87 @@
       <div class="column is-full-width">
         <h2 class="title is-3">Video Results</h2>
         <div class="content">
-          <!-- 第一行视频 -->
-          <div class="columns is-multiline">
-            <div class="column is-4">
+          <!-- 主要布局：左边大视频，右边小视频网格 -->
+          <div class="columns">
+            <!-- 左边：大正方形视频区域 -->
+            <div class="column is-6">
               <div class="box">
-                <video controls autoplay muted loop style="width: 100%;">
+                <video controls autoplay muted loop style="width: 100%; aspect-ratio: 1; object-fit: cover;">
                   <source src="./static/Video/Several large, solid, cube-shaped parcels, wrapped in brown paper and tied with string, each labeled with a different destination, awaiting dispatch in a post office/it16000-test.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
-                <p class="has-text-centered" style="margin-top: 10px;">Several large, solid, cube-shaped parcels</p>
+                <p class="has-text-centered" style="margin-top: 10px; font-weight: bold;">Several large, solid, cube-shaped parcels</p>
               </div>
             </div>
-            <div class="column is-4">
-              <div class="box">
-                <video controls autoplay muted loop style="width: 100%;">
-                  <source src="./static/Video/Orange monarch butterfly resting on a dandelion/it16000-test.mp4" type="video/mp4">
-                </video>
-                <p class="has-text-centered" style="margin-top: 10px;">Orange monarch butterfly</p>
-              </div>
-            </div>
-            <div class="column is-4">
-              <div class="box">
-                <video controls autoplay muted loop style="width: 100%;">
-                  <source src="./static/Video/A cat pondering the mysteries of the universe/it16000-test.mp4" type="video/mp4">
-                </video>
-                <p class="has-text-centered" style="margin-top: 10px;">A cat pondering the mysteries</p>
-              </div>
-            </div>
-          </div>
 
-          <!-- 第二行视频 -->
-          <div class="columns is-multiline">
-            <div class="column is-4">
-              <div class="box">
-                <video controls autoplay muted loop style="width: 100%;">
-                  <source src="./static/Video/Floating bonsai tree, roots in mid-air/it16000-test.mp4" type="video/mp4">
-                </video>
-                <p class="has-text-centered" style="margin-top: 10px;">Floating bonsai tree</p>
+            <!-- 右边：小视频网格区域 -->
+            <div class="column is-6">
+              <!-- 第一行：2x3网格 (6个小视频) -->
+              <div class="box" style="margin-bottom: 15px;">
+                <div class="columns is-multiline is-mobile" style="margin: 0;">
+                  <!-- 第一行 -->
+                  <div class="column is-4">
+                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
+                      <source src="./static/Video/Orange monarch butterfly resting on a dandelion/it16000-test.mp4" type="video/mp4">
+                    </video>
+                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">Orange monarch butterfly</p>
+                  </div>
+                  <div class="column is-4">
+                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
+                      <source src="./static/Video/A cat pondering the mysteries of the universe/it16000-test.mp4" type="video/mp4">
+                    </video>
+                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">A cat pondering the mysteries</p>
+                  </div>
+                  <div class="column is-4">
+                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
+                      <source src="./static/Video/Floating bonsai tree, roots in mid-air/it16000-test.mp4" type="video/mp4">
+                    </video>
+                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">Floating bonsai tree</p>
+                  </div>
+                  <!-- 第二行 -->
+                  <div class="column is-4">
+                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
+                      <source src="./static/Video/A large, multi-layered, symmetrical wedding cake, with smooth fondant, delicate piping, and lifelike sugar flowers in full bloom, displayed on a silver stand/it16000-test.mp4" type="video/mp4">
+                    </video>
+                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">Multi-layered wedding cake</p>
+                  </div>
+                  <div class="column is-4">
+                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
+                      <source src="./static/Video/A carved wooden bear with a salmon in mouth/it16000-test.mp4" type="video/mp4">
+                    </video>
+                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">Carved wooden bear</p>
+                  </div>
+                  <div class="column is-4">
+                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
+                      <source src="./static/Video/A sequence of street lamps, casting pools of light on cobblestone paths as twilight descends/it16000-test.mp4" type="video/mp4">
+                    </video>
+                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">Sequence of street lamps</p>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="column is-4">
-              <div class="box">
-                <video controls autoplay muted loop style="width: 100%;">
-                  <source src="./static/Video/A large, multi-layered, symmetrical wedding cake, with smooth fondant, delicate piping, and lifelike sugar flowers in full bloom, displayed on a silver stand/it16000-test.mp4" type="video/mp4">
-                </video>
-                <p class="has-text-centered" style="margin-top: 10px;">Multi-layered wedding cake</p>
-              </div>
-            </div>
-            <div class="column is-4">
-              <div class="box">
-                <video controls autoplay muted loop style="width: 100%;">
-                  <source src="./static/Video/A carved wooden bear with a salmon in mouth/it16000-test.mp4" type="video/mp4">
-                </video>
-                <p class="has-text-centered" style="margin-top: 10px;">Carved wooden bear</p>
-              </div>
-            </div>
-          </div>
 
-          <!-- 第三行视频 -->
-          <div class="columns is-multiline">
-            <div class="column is-4">
+              <!-- 第二行：3个1x1视频 -->
               <div class="box">
-                <video controls autoplay muted loop style="width: 100%;">
-                  <source src="./static/Video/A sequence of street lamps, casting pools of light on cobblestone paths as twilight descends/it16000-test.mp4" type="video/mp4">
-                </video>
-                <p class="has-text-centered" style="margin-top: 10px;">Sequence of street lamps</p>
-              </div>
-            </div>
-            <div class="column is-4">
-              <div class="box">
-                <video controls autoplay muted loop style="width: 100%;">
-                  <source src="./static/Video/A golden retriever plush toy, floppy-eare/it16000-test.mp4" type="video/mp4">
-                </video>
-                <p class="has-text-centered" style="margin-top: 10px;">Golden retriever plush toy</p>
-              </div>
-            </div>
-            <div class="column is-4">
-              <div class="box">
-                <video controls autoplay muted loop style="width: 100%;">
-                  <source src="./static/Video/A torn hat/it16000-test.mp4" type="video/mp4">
-                </video>
-                <p class="has-text-centered" style="margin-top: 10px;">A torn hat</p>
+                <div class="columns is-multiline is-mobile" style="margin: 0;">
+                  <div class="column is-4">
+                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
+                      <source src="./static/Video/A golden retriever plush toy, floppy-eare/it16000-test.mp4" type="video/mp4">
+                    </video>
+                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">Golden retriever plush toy</p>
+                  </div>
+                  <div class="column is-4">
+                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
+                      <source src="./static/Video/A torn hat/it16000-test.mp4" type="video/mp4">
+                    </video>
+                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">A torn hat</p>
+                  </div>
+                  <div class="column is-4">
+                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
+                      <source src="./static/Video/Several large, solid, cube-shaped parcels, wrapped in brown paper and tied with string, each labeled with a different destination, awaiting dispatch in a post office/it16000-test.mp4" type="video/mp4">
+                    </video>
+                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">Additional example</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -391,7 +391,7 @@
         <h2 class="title is-3">Comparison with Baselines based on MVDiffusion and reward model</h2>
         <div class="content has-text-centered">
           <div style="margin: 20px 0;">
-            <img src="./static/images/vlm3d-figure4.jpeg" style="width: 90%; margin-bottom: 20px;">
+            <img src="./static/images/vlm3d-figure4.png" style="width: 90%; margin-bottom: 20px;">
             <p>VLM3D outperforms these reward-involved methods in semantic fidelity while retaining high perceptual quality.</p>
           </div>
         </div>
@@ -400,7 +400,7 @@
         <h2 class="title is-3">Comparison of VLM3D with feed-forward baselines.</h2>
         <div class="content has-text-centered">
           <div style="margin: 20px 0;">
-            <img src="./static/images/vlm3d-figure5.jpeg" style="width: 90%; margin-bottom: 20px;">
+            <img src="./static/images/vlm3d-figure5.png" style="width: 90%; margin-bottom: 20px;">
             <p>VLM3D outperforms feed-forward baselines in semantic fidelity while retaining high perceptual quality.</p>
           </div>
         </div>
@@ -408,7 +408,7 @@
         <h2 class="title is-3">Sensitivity Analysis to Text Perturbations</h2>
         <div class="content has-text-centered">
           <div style="margin: 20px 0;">
-            <img src="./static/images/vlm3d-figure6.jpeg" style="width: 95%; margin-bottom: 20px;">
+            <img src="./static/images/vlm3d-figure6.png" style="width: 95%; margin-bottom: 20px;">
             <p>VLM3D accurately changes clothing color (first row), and updates spatial relations (second row), </p>demonstrating
               its better semantic understanding than baselines.</p>
           </div>
@@ -417,7 +417,7 @@
         <h2 class="title is-3">Ablation of Geometric Query and Multi-View Input</h2>
         <div class="content has-text-centered">
           <div style="margin: 20px 0;">
-            <img src="./static/images/vlm3d-figure7.jpeg" style="width: 95%; margin-bottom: 20px;">
+            <img src="./static/images/vlm3d-figure7.png" style="width: 95%; margin-bottom: 20px;">
             <p>We assess the impact of (a) removing the explicit geometry-consistency
               query from the VLM prompt and (b) using a single view instead of multi-view images. Omitting either component degrades 3D quality—leading to Janus-face artifacts, floating parts, and fractured surfaces. </p>Each row uses a different diffusion backbone: the top employs
               Stable Diffusion 2-1, while the bottom uses MVDream.</p>
@@ -425,70 +425,6 @@
         </div>
 
     </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
-        <div class="content has-text-centered">
-          <div style="margin: 20px 0;">
-            <img src="./static/images/addition_1.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
-            <p>Additional results generated by our optimization-based VLM3D.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
-        <div class="content has-text-centered">
-          <div style="margin: 20px 0;">
-            <img src="./static/images/addition_2.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
-            <p>Additional results generated by our optimization-based VLM3D.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
-        <div class="content has-text-centered">
-          <div style="margin: 20px 0;">
-            <img src="./static/images/addition_3.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
-            <p>Additional results generated by our feed-forward-based VLM3D.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
-        <div class="content has-text-centered">
-          <div style="margin: 20px 0;">
-            <img src="./static/images/addition_4.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
-            <p>Additional results generated by our feed-forward-based VLM3D.</p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
