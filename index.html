@@ -57,6 +57,26 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script>
+    // 修复scale-wrapper导致的底部空白
+    document.addEventListener('DOMContentLoaded', function() {
+      const scaleWrapper = document.querySelector('.scale-wrapper');
+      if (scaleWrapper) {
+        // 计算scale后的实际高度，并设置负margin来抵消多余空间
+        const updateScaleMargin = function() {
+          const scale = 0.7;
+          const actualHeight = scaleWrapper.scrollHeight * scale;
+          const extraHeight = scaleWrapper.scrollHeight - actualHeight;
+          scaleWrapper.style.marginBottom = '-' + extraHeight + 'px';
+        };
+        updateScaleMargin();
+        // 监听窗口大小变化
+        window.addEventListener('resize', updateScaleMargin);
+        // 延迟执行以确保所有内容加载完成
+        setTimeout(updateScaleMargin, 100);
+      }
+    });
+  </script>
   <script type="text/x-mathjax-config">
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 </script>
@@ -77,49 +97,243 @@
     max-width: 1100px;
     margin: 0 auto;
   }
+
+  /* 统一所有图片的宽度为100% */
+  .content img,
+  .has-text-centered img,
+  .center img {
+    width: 100% !important;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+  }
+
+  /* 视频区域整体容器宽度统一为100% */
+  .video-row {
+    width: 100% !important;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* 视频区域内的图片和视频保持相对布局 */
+  .video-row img,
+  .video-row video,
+  .video-left img,
+  .video-right img,
+  .video-right video {
+    width: 100% !important;
+  }
+
+  /* 统一所有文字内容区域的宽度 */
+  .columns.is-centered .column.is-full-width,
+  .columns.is-centered .column.is-four-fifths,
+  .columns.is-centered .column.is-three-fifths {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* 确保所有section中的内容都使用一致的宽度 */
+  section .content {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* 统一所有标题和段落的宽度 */
+  section .title,
+  section .content p {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* 移除底部留白 */
+  section.section {
+    padding-bottom: 3rem;
+  }
+
+  section:last-of-type {
+    padding-bottom: 1.5rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  #BibTeX {
+    padding-bottom: 1.5rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .footer {
+    margin-top: 0 !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  body {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    overflow-x: hidden;
+    height: auto;
+    min-height: auto;
+  }
+
+  html {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    height: auto;
+    min-height: auto;
+    overflow-x: hidden;
+  }
+
+
+  /* 整体缩放为80% */
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .scale-wrapper {
+    transform: scale(0.7);
+    transform-origin: top center;
+    width: 100vw;
+    margin: 0 auto;
+    padding-bottom: 0;
+    height: auto;
+    display: block;
+    /* margin-bottom 将通过JavaScript动态设置 */
+  }
+
+  /* Abstract 样式调整：字体放大，两行间距适当增加 */
+  .abstract-text {
+    font-size: 1.25rem;
+    line-height: 1.7;
+  }
+
+  /* 视频布局样式：确保左右区域等高，美观间距与字幕占位 */
+  .video-row {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+  }
+  /* 固定整个视频行高度，方便行内元素按比例布局 */
+  :root { --video-total-height: 540px; }
+  .video-row { height: var(--video-total-height); }
+
+  .video-left .box,
+  .video-right .box {
+    height: 600px; /* 整体高度：调整为600px */
+    box-sizing: border-box;
+    padding: 8px;
+  }
+
+  .video-caption {
+    min-height: 5.2em;
+    margin-top: 8px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  /* 使用 grid 布局使右侧严格对齐为：上两列、下三列 */
+  .video-right .box {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    height: 100%;
+  }
+
+  .video-right .top-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .video-right .bottom-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .video-right .top-row > div,
+  .video-right .bottom-row > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  .video-right video,
+  .video-right img {
+    width: 100%;
+    height: auto;
+    flex: 1 1 auto;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  }
+
+  /* 去掉左右区域外部白框（只影响视频区域的 box） */
+  .video-left .box,
+  .video-right .box {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+  }
+
+  /* 右侧视频与文字间距更大，确保视频高度一致 */
+  .video-right .video-caption {
+    min-height: 1.8em;
+    margin-top: 12px;
+    font-size: 0.9rem;
+  }
+
+  /* 限制左侧 caption 最大高度，避免撑高列（如果文字过多会出现滚动） */
+  .video-left .video-caption {
+    max-height: 160px;
+    overflow: auto;
+    padding-top: 10px;
+  }
+
+  /* 右侧 caption 更紧凑，留更多高度给视频 */
+  .video-right .video-caption {
+    min-height: 1.6em;
+    margin-top: 6px;
+    font-size: 0.85rem;
+  }
+
+  .video-left .box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .video-left img {
+    width: 100%;
+    flex: 1 1 auto;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  }
+
+  /* 左侧大caption与图片同宽并居中 */
+  .video-left .video-caption {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-left: 0%;
+    text-align: center;
+  }
+
+  /* 给视频区域底部多留些空白，避免被下方标题覆盖 */
+  .content .video-row {
+    margin-bottom: 48px;
+  }
 </style>
 
-<!--<nav class="navbar" role="navigation" aria-label="main navigation">-->
-<!--  <div class="navbar-brand">-->
-<!--    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">-->
-<!--      <span aria-hidden="true"></span>-->
-<!--      <span aria-hidden="true"></span>-->
-<!--      <span aria-hidden="true"></span>-->
-<!--    </a>-->
-<!--  </div>-->
-<!--  <div class="navbar-menu">-->
-<!--    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">-->
-<!--      <a class="navbar-item" href="https://keunhong.com">-->
-<!--      <span class="icon">-->
-<!--          <i class="fas fa-home"></i>-->
-<!--      </span>-->
-<!--      </a>-->
 
-<!--      <div class="navbar-item has-dropdown is-hoverable">-->
-<!--        <a class="navbar-link">-->
-<!--          More Research-->
-<!--        </a>-->
-<!--        <div class="navbar-dropdown">-->
-<!--          <a class="navbar-item" href="https://hypernerf.github.io">-->
-<!--            HyperNeRF-->
-<!--          </a>-->
-<!--          <a class="navbar-item" href="https://nerfies.github.io">-->
-<!--            Nerfies-->
-<!--          </a>-->
-<!--          <a class="navbar-item" href="https://latentfusion.github.io">-->
-<!--            LatentFusion-->
-<!--          </a>-->
-<!--          <a class="navbar-item" href="https://photoshape.github.io">-->
-<!--            PhotoShape-->
-<!--          </a>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--  </div>-->
-<!--</nav>-->
-
-
+<div class="scale-wrapper">
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
@@ -222,11 +436,34 @@
 
 <section class="" style="padding-bottom: 3rem">
   <div class="container is-max-desktop">
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Method</h2>
+  <!--        <div class="publication-video">-->
+  <!--          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"-->
+  <!--                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
+  <!--        </div>-->
+          <div>
+          <span class="center"><img src="./static/images/vlm3d-overview-cvpr-2_01.png"></span><br>
+            <!-- <p class="bold-and-large">E-step, draw samples from LDMs: </p>
+              <span class="center"><img src="./static/images/img_13.png" style="width:550px;"></span><br>
+            <br>
+            <p class="bold-and-large">M-step, update forward model through MAP:
+                <span class="center"><img src="./static/images/img_14.png" style="width:550px;"></span><br>
+            </p>
+            <br>
+            * Further details can be found in the paper. -->
+          </div>
+        </div>
+      </div>
+      <!--/ Paper video. -->
+    </div>
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+    <div class="column is-full-width">
         <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
+        <div class="content has-text-justified abstract-text">
           <p>
             Text-to-3D generation has advanced rapidly, yet state-of-theart models, encompassing both optimization-based and feedforward architectures, still face two fundamental limitations.
             First, they struggle with coarse semantic alignment, often
@@ -251,29 +488,7 @@
     </div>
     <!--/ Abstract. -->
 
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Method</h2>
-<!--        <div class="publication-video">-->
-<!--          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"-->
-<!--                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
-<!--        </div>-->
-        <div>
-        <span class="center"><img src="./static/images/vlm3d-overview-cvpr-2_01.png" style="width:1250px;"></span><br>
-          <!-- <p class="bold-and-large">E-step, draw samples from LDMs: </p>
-            <span class="center"><img src="./static/images/img_13.png" style="width:550px;"></span><br>
-          <br>
-          <p class="bold-and-large">M-step, update forward model through MAP:
-              <span class="center"><img src="./static/images/img_14.png" style="width:550px;"></span><br>
-          </p>
-          <br>
-          * Further details can be found in the paper. -->
-        </div>
-      </div>
-    </div>
-    <!--/ Paper video. -->
-  </div>
+    
 </section>
 
 <section class="section">
@@ -283,84 +498,62 @@
         <h2 class="title is-3">Video Results</h2>
         <div class="content">
           <!-- 主要布局：左边大视频，右边小视频网格 -->
-          <div class="columns">
+          <div class="columns video-row">
             <!-- 左边：大正方形视频区域 -->
-            <div class="column is-6">
-              <div class="box">
-                <video controls autoplay muted loop style="width: 100%; aspect-ratio: 1; object-fit: cover;">
-                  <source src="./static/Video/Several large, solid, cube-shaped parcels, wrapped in brown paper and tied with string, each labeled with a different destination, awaiting dispatch in a post office/it16000-test.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <p class="has-text-centered" style="margin-top: 10px; font-weight: bold;">Several large, solid, cube-shaped parcels</p>
+            <div class="column is-5 video-left">
+              <div class="box" style="height: 100%;">
+                <img src="./static/images/sailor.gif" style="width: 100%; height: 100%; object-fit: cover;" alt="Sailor Animation">
+                <p class="has-text-centered video-caption" style="font-weight: bold;">
+                  A Navy sailor in a dark uniform—cap, jacket, and trousers—leaning 
+                  forward at the waist to press his lips against a nurse in a crisp 
+                  white dress; his left hand cradles the back of her head and
+                  his right arm wraps around her
+                  waist, while she arches backward
+                  in a dramatic dip with one leg
+                  lifted and her arms outstretched
+                  for balance.
+                  </p>
               </div>
             </div>
 
-            <!-- 右边：小视频网格区域 -->
-            <div class="column is-6">
-              <!-- 第一行：2x3网格 (6个小视频) -->
-              <div class="box" style="margin-bottom: 15px;">
-                <div class="columns is-multiline is-mobile" style="margin: 0;">
-                  <!-- 第一行 -->
-                  <div class="column is-4">
-                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
-                      <source src="./static/Video/Orange monarch butterfly resting on a dandelion/it16000-test.mp4" type="video/mp4">
+            <!-- 右边：小视频网格区域（上：3个1:1视频，下：3个1:1视频） -->
+            <div class="column is-7 video-right">
+              <div class="box" style="height: 100%;">
+                <!-- 上半部分：两个 3:1 宽高比的视频 -->
+                <div class="top-row">
+                  <div>
+                    <video controls autoplay muted loop style="width: 100%; height: 100%; object-fit: cover;">
+                      <source src="./static/Video/vlm3d/An_ancient,_weathered_statue,_now_covered_in_a_blanket_of_moss/1.mp4" type="video/mp4">
                     </video>
-                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">Orange monarch butterfly</p>
+                    <p class="has-text-centered video-caption" style="margin-top: 8px; font-size: 0.9em;">An ancient, weathered statue, now covered in a blanket of moss</p>
                   </div>
-                  <div class="column is-4">
-                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
-                      <source src="./static/Video/A cat pondering the mysteries of the universe/it16000-test.mp4" type="video/mp4">
+                  <div>
+                    <video controls autoplay muted loop style="width: 100%; height: 100%; object-fit: cover;">
+                      <source src="./static/Video/vlm3d/An_ice_cream_scoop_that_serves_up_scoops_of_cloud_fluff_instead_of_ice_cream/2.mp4" type="video/mp4">
                     </video>
-                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">A cat pondering the mysteries</p>
+                    <p class="has-text-centered video-caption" style="margin-top: 8px; font-size: 0.9em;">An ice cream scoop that serves up scoops of cloud fluff instead of ice cream</p>
                   </div>
-                  <div class="column is-4">
-                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
-                      <source src="./static/Video/Floating bonsai tree, roots in mid-air/it16000-test.mp4" type="video/mp4">
+                  <div>
+                    <video controls autoplay muted loop style="width: 100%; height: 100%; object-fit: cover;">
+                      <source src="./static/Video/vlm3d/Spotted_ladybug_crawling_on_a_green_leaf/3.mp4" type="video/mp4">
                     </video>
-                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">Floating bonsai tree</p>
-                  </div>
-                  <!-- 第二行 -->
-                  <div class="column is-4">
-                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
-                      <source src="./static/Video/A large, multi-layered, symmetrical wedding cake, with smooth fondant, delicate piping, and lifelike sugar flowers in full bloom, displayed on a silver stand/it16000-test.mp4" type="video/mp4">
-                    </video>
-                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">Multi-layered wedding cake</p>
-                  </div>
-                  <div class="column is-4">
-                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
-                      <source src="./static/Video/A carved wooden bear with a salmon in mouth/it16000-test.mp4" type="video/mp4">
-                    </video>
-                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">Carved wooden bear</p>
-                  </div>
-                  <div class="column is-4">
-                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
-                      <source src="./static/Video/A sequence of street lamps, casting pools of light on cobblestone paths as twilight descends/it16000-test.mp4" type="video/mp4">
-                    </video>
-                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">Sequence of street lamps</p>
+                    <p class="has-text-centered video-caption" style="margin-top: 8px; font-size: 0.9em;">Spotted ladybug<br>crawling on<br>a green leaf</p>
                   </div>
                 </div>
-              </div>
 
-              <!-- 第二行：3个1x1视频 -->
-              <div class="box">
-                <div class="columns is-multiline is-mobile" style="margin: 0;">
-                  <div class="column is-4">
-                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
-                      <source src="./static/Video/A golden retriever plush toy, floppy-eare/it16000-test.mp4" type="video/mp4">
-                    </video>
-                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">Golden retriever plush toy</p>
+                <!-- 下半部分：三个 1:1 的视频 -->
+                <div class="bottom-row">
+                  <div>
+                    <img src="./static/images/a_bedside_table.gif" alt="A bedside table" style="width:100%; height:100%; object-fit:cover;">
+                    <p class="has-text-centered video-caption" style="margin-top: 5px; font-size: 0.8em;">A bedside table</p>
                   </div>
-                  <div class="column is-4">
-                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
-                      <source src="./static/Video/A torn hat/it16000-test.mp4" type="video/mp4">
-                    </video>
-                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">A torn hat</p>
+                  <div>
+                    <img src="./static/images/a_carry_on_bag.gif" alt="A carry-on bag" style="width:100%; height:100%; object-fit:cover;">
+                    <p class="has-text-centered video-caption" style="margin-top: 5px; font-size: 0.8em;">A carry-on bag</p>
                   </div>
-                  <div class="column is-4">
-                    <video controls autoplay muted loop style="width: 100%; height: 80px; object-fit: cover;">
-                      <source src="./static/Video/Several large, solid, cube-shaped parcels, wrapped in brown paper and tied with string, each labeled with a different destination, awaiting dispatch in a post office/it16000-test.mp4" type="video/mp4">
-                    </video>
-                    <p class="has-text-centered" style="margin-top: 5px; font-size: 0.8em;">Additional example</p>
+                  <div>
+                    <img src="./static/images/An_electric_grill.gif" alt="An electric grill" style="width:100%; height:100%; object-fit:cover;">
+                    <p class="has-text-centered video-caption" style="margin-top: 5px; font-size: 0.8em;">An electric grill</p>
                   </div>
                 </div>
               </div>
@@ -382,7 +575,7 @@
         <h2 class="title is-3">Comparison with Baselines on the GPTEval3D Benchmark</h2>
         <div class="content has-text-centered">
           <div style="margin: 20px 0;">
-            <img src="./static/images/vlm3d-figure3.png" style="width: 85%; margin-bottom: 20px;">
+            <img src="./static/images/vlm3d-figure3.png">
             <p>VLM3D outperforms baseline methods in geometric consistency, 3D plausibility, texture richness, and text alignment.</p>
           </div>
         </div>
@@ -391,7 +584,7 @@
         <h2 class="title is-3">Comparison with Baselines based on MVDiffusion and reward model</h2>
         <div class="content has-text-centered">
           <div style="margin: 20px 0;">
-            <img src="./static/images/vlm3d-figure4.png" style="width: 90%; margin-bottom: 20px;">
+            <img src="./static/images/vlm3d-figure4.png">
             <p>VLM3D outperforms these reward-involved methods in semantic fidelity while retaining high perceptual quality.</p>
           </div>
         </div>
@@ -400,7 +593,7 @@
         <h2 class="title is-3">Comparison of VLM3D with feed-forward baselines.</h2>
         <div class="content has-text-centered">
           <div style="margin: 20px 0;">
-            <img src="./static/images/vlm3d-figure5.png" style="width: 90%; margin-bottom: 20px;">
+            <img src="./static/images/vlm3d-figure5.png">
             <p>VLM3D outperforms feed-forward baselines in semantic fidelity while retaining high perceptual quality.</p>
           </div>
         </div>
@@ -408,7 +601,7 @@
         <h2 class="title is-3">Sensitivity Analysis to Text Perturbations</h2>
         <div class="content has-text-centered">
           <div style="margin: 20px 0;">
-            <img src="./static/images/vlm3d-figure6.png" style="width: 95%; margin-bottom: 20px;">
+            <img src="./static/images/vlm3d-figure6.png">
             <p>VLM3D accurately changes clothing color (first row), and updates spatial relations (second row), </p>demonstrating
               its better semantic understanding than baselines.</p>
           </div>
@@ -417,78 +610,14 @@
         <h2 class="title is-3">Ablation of Geometric Query and Multi-View Input</h2>
         <div class="content has-text-centered">
           <div style="margin: 20px 0;">
-            <img src="./static/images/vlm3d-figure7.png" style="width: 95%; margin-bottom: 20px;">
+            <img src="./static/images/vlm3d-figure7.png">
             <p>We assess the impact of (a) removing the explicit geometry-consistency
-              query from the VLM prompt and (b) using a single view instead of multi-view images. Omitting either component degrades 3D quality—leading to Janus-face artifacts, floating parts, and fractured surfaces. </p>Each row uses a different diffusion backbone: the top employs
+              query from the VLM prompt and (b) using a single view instead of multi-view images. Omitting either component degrades 3D quality—leading to Janus-face artifacts, floating parts, and fractured surfaces. </p>Each row uses a different diffusion backbone: the top employs
               Stable Diffusion 2-1, while the bottom uses MVDream.</p>
           </div>
         </div>
 
     </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
-        <div class="content has-text-centered">
-          <div style="margin: 20px 0;">
-            <img src="./static/images/addition_1.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
-            <p>Additional results generated by our optimization-based VLM3D.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
-        <div class="content has-text-centered">
-          <div style="margin: 20px 0;">
-            <img src="./static/images/addition_2.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
-            <p>Additional results generated by our optimization-based VLM3D.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
-        <div class="content has-text-centered">
-          <div style="margin: 20px 0;">
-            <img src="./static/images/addition_3.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
-            <p>Additional results generated by our feed-forward-based VLM3D.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
-        <div class="content has-text-centered">
-          <div style="margin: 20px 0;">
-            <img src="./static/images/addition_4.png" style="width: 90%; margin-bottom: 20px;" alt="Additional VLM3D Results">
-            <p>Additional results generated by our feed-forward-based VLM3D.</p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -679,6 +808,72 @@
   </div>
 </section>
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
+        <div class="content has-text-centered">
+          <div style="margin: 20px 0;">
+            <img src="./static/images/addition_1.png" alt="Additional VLM3D Results">
+            <p>Additional results generated by our optimization-based VLM3D.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
+        <div class="content has-text-centered">
+          <div style="margin: 20px 0;">
+            <img src="./static/images/addition_2.png" alt="Additional VLM3D Results">
+            <p>Additional results generated by our optimization-based VLM3D.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
+        <div class="content has-text-centered">
+          <div style="margin: 20px 0;">
+            <img src="./static/images/addition_3.png" alt="Additional VLM3D Results">
+            <p>Additional results generated by our feed-forward-based VLM3D.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Additional results generated by our optimization-based VLM3D</h2>
+        <div class="content has-text-centered">
+          <div style="margin: 20px 0;">
+            <img src="./static/images/addition_4.png" alt="Additional VLM3D Results">
+            <p>Additional results generated by our feed-forward-based VLM3D.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 
 
 
@@ -730,6 +925,7 @@
     </div>
   </div>
 </footer>
+</div>
 
 </body>
 </html>
