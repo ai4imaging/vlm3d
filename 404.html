@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
     <script>
-        // 获取当前用户输入的路径
-        var path = window.location.pathname.toLowerCase();
+        // 获取当前浏览器地址栏的路径
+        var currentPath = window.location.pathname;
         
-        // 如果路径里包含 vlm3d（不论大小写）
-        if (path.includes('vlm3d')) {
+        // 检查路径中是否包含 "vlm3d"（不区分大小写）
+        // 比如 /vlm3d, /Vlm3d, /VLM3D/ 都会被匹配
+        if (currentPath.toLowerCase().includes('vlm3d')) {
             // 强制跳转到正确的大写地址
             window.location.href = "https://ai4scientificimaging.org/VLM3D/";
         }
     </script>
 </head>
 <body>
-    Page not found. Redirecting...
+    Page not found. Redirecting to VLM3D...
 </body>
 </html>
